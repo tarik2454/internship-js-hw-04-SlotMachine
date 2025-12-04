@@ -1,5 +1,58 @@
 .page {
+  padding-top: 44px;
 }
 
 .container {
+  width: 100%;
+  max-width: 530px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.logoIcon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 38px;
+}
+
+.slotMachine {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.betText {
+  -webkit-text-stroke: 1px black;
+  margin-bottom: 20px;
+  color: #54c3ee;
+  font-weight: 400;
+  font-family: "Bungee";
+  text-align: center;
+}
+
+.betBtn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 82px;
+  gap: 12px;
+}
+
+.spinWrapper {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 38px;
+}
+
+.spinBtn {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.union {
+  display: flex;
+  justify-content: center;
 }
