@@ -2,6 +2,10 @@
 
 import { useSlotLogic } from "../hooks/useSlotLogic";
 import styles from "./BetControls.module.scss";
+import buttonPlus from "../image/bet-controls/button-plus.svg";
+import buttonMinus from "../image/bet-controls/button-minus.svg";
+import betDisplayOverlay from "../image/bet-controls/bet-display.svg";
+import Image from "next/image";
 
 export const BetControls = () => {
   const { currentBet, handleDecrementBet, handleIncrementBet, isSpinning } =
@@ -15,12 +19,16 @@ export const BetControls = () => {
         disabled={isSpinning}
         type="button"
       >
-        -
+        <Image
+          className={styles.buttonPlus}
+          src={buttonPlus}
+          alt="Button plus"
+        />
       </button>
 
       <div className={styles.betDisplay}>
-        <span className={styles.betLabel}>BET</span>
-        <span className={styles.betAmount}>${currentBet}</span>
+        <Image src={betDisplayOverlay} alt="Bet display overlay" />
+        <span className={styles.betAmount}>{currentBet}</span>
       </div>
 
       <button
@@ -29,7 +37,11 @@ export const BetControls = () => {
         disabled={isSpinning}
         type="button"
       >
-        +
+        <Image
+          className={styles.buttonMinus}
+          src={buttonMinus}
+          alt="Button minus"
+        />
       </button>
     </div>
   );

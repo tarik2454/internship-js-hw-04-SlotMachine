@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Bungee, Poetsen_One } from "next/font/google";
 import PocketMonk from "next/font/local";
+import Image from "next/image";
+import styles from "./layout.module.scss";
 import "../styles/globals.scss";
+import skyTop from "../image/main-page/sky-top.svg";
+import skyBottom from "../image/main-page/sky-bottom.svg";
+import tokiocity from "../image/main-page/tokiocity.svg";
 
 const pocketMonk = PocketMonk({
   src: [
@@ -45,7 +50,10 @@ export default function RootLayout({
       <body
         className={`${pocketMonk.variable} ${bungee.variable} ${poetsenOne.variable}`}
       >
+        <Image className={styles.skyTop} src={skyTop} alt="Tokio Slots" />
         {children}
+        <Image className={styles.tokiocity} src={tokiocity} alt="Tokio Slots" />
+        <Image className={styles.skyBottom} src={skyBottom} alt="Tokio Slots" />
       </body>
     </html>
   );

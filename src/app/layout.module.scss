@@ -1,0 +1,20 @@
+.skyTop {
+  z-index: 1;
+  position: absolute;
+  top: -54px;
+  left: 0;
+}
+
+.tokiocity {
+  z-index: 1;
+  position: absolute;
+  bottom: 38px;
+  left: 0;
+}
+
+.skyBottom {
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

@@ -2,8 +2,6 @@
 
 import React, { useEffect } from "react";
 import { Reel } from "./Reel";
-import { BetControls } from "./BetControls";
-import { SpinButton } from "./SpinButton";
 import { Balance } from "./Balance";
 import { useSlotLogic } from "../hooks/useSlotLogic";
 import { useSlotStore } from "../store/useSlotStore";
@@ -29,11 +27,6 @@ export const SlotMachine = () => {
               <Reel key={index} reelIndex={index} reelData={reel} />
             ))}
           </div>
-        </div>
-
-        <div className={styles.controls}>
-          <BetControls />
-          <SpinButton onSpin={handleSpin} disabled={!canSpin} />
         </div>
 
         <Balance />

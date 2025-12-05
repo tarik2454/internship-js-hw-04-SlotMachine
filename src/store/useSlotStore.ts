@@ -154,7 +154,7 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
   setBet: (amount: number) => {
     const { balance } = get();
     set({
-      currentBet: Math.max(1, Math.min(amount, balance)),
+      currentBet: Math.max(10, Math.min(amount, balance)),
     });
   },
 
@@ -166,7 +166,7 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
 
   decrementBet: () => {
     const { currentBet } = get();
-    const newBet = Math.max(currentBet - 10, 1);
+    const newBet = Math.max(currentBet - 10, 10);
     set({ currentBet: newBet });
   },
 

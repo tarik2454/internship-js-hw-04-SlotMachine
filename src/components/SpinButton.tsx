@@ -1,7 +1,9 @@
 "use client";
 
-import React from "react";
 import styles from "./SpinButton.module.scss";
+import Image from "next/image";
+import buttonBase from "../image/spin-button/button-base.svg";
+import spin from "../image/spin-button/spin.svg";
 
 interface SpinButtonProps {
   onSpin: () => void;
@@ -10,14 +12,20 @@ interface SpinButtonProps {
 
 export const SpinButton = ({ onSpin, disabled }: SpinButtonProps) => {
   return (
-    <button
-      className={`${styles.spinButton} ${disabled ? styles.disabled : ""}`}
-      onClick={onSpin}
-      disabled={disabled}
-      type="button"
-    >
-      <span className={styles.buttonText}>SPIN</span>
-      <div className={styles.buttonGlow} />
-    </button>
+    <div className={styles.spinButtonWrapper}>
+      <button
+        className={`${styles.spinButton} ${disabled ? styles.disabled : ""}`}
+        onClick={onSpin}
+        disabled={disabled}
+        type="button"
+      >
+        <Image className={styles.spin} src={spin} alt="Spin text overlay" />
+      </button>
+      <Image
+        className={styles.buttonBase}
+        src={buttonBase}
+        alt="Spin button base"
+      />
+    </div>
   );
 };
