@@ -1,0 +1,116 @@
+.reel {
+  position: relative;
+  width: 80px;
+  height: 120px;
+  background: #222;
+  border: 2px solid #666;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.reelWindow {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.symbol {
+  width: 70px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #333;
+  border-radius: 4px;
+  margin: 2px 0;
+  font-size: 18px;
+
+  &.active {
+    background: #ffd700;
+    color: #000;
+    font-weight: bold;
+  }
+}
+
+.symbolContent {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.spinning {
+  animation: spin 0.1s infinite linear;
+
+  .symbol {
+    animation: blur 0.1s infinite alternate;
+  }
+}
+
+.reelBorder {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffd700, transparent);
+  transform: translateY(-50%);
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes spin {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-2px); }
+}
+
+@keyframes blur {
+  0% { filter: blur(0px); }
+  100% { filter: blur(1px); }
+}
+
+.spinEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  animation: spinFlash 0.3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes spinFlash {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .reel {
+    width: 80px;
+    height: 120px;
+  }
+
+  .symbol {
+    width: 65px;
+    height: 32px;
+  }
+
+  .symbolContent {
+    font-size: 14px;
+  }
+}

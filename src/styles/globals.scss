@@ -1,15 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
-
 :root {
+  --text-primary: #a5dff7;
+  --text-secondary: #999999;
+
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 * {
@@ -21,40 +15,39 @@
 html,
 body {
   max-width: 100vw;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-
-  font-family:
-    "Bungee" Arial,
-    Helvetica,
-    sans-serif;
+  position: relative;
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: var(--font-pocket-monk);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background: var(--background);
-  background-image: url("/main-bg-mobile.webp");
+  background-image: url("/main-bg.webp");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  color: white;
-  color: var(--foreground);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.4;
+}
 
-  @media (min-width: 376px) {
-    background-image: url("/main-bg.webp");
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
   }
 }
 
-button {
-  border: transparent;
-  background: transparent;
-  cursor: pointer;
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
 }

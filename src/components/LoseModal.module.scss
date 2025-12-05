@@ -1,0 +1,131 @@
+.modalOverlay {
+  display: flex;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 140, 0, 0.9);
+}
+
+.modal {
+  width: 90%;
+  max-width: 300px;
+  padding: 20px;
+  border: 3px solid #ff6b35;
+  border-radius: 12px;
+  background: #222;
+  text-align: center;
+}
+
+.modalContent {
+  color: white;
+  text-align: center;
+}
+
+.loseIcon {
+  margin-bottom: 15px;
+  font-size: 4rem;
+  animation: shake 0.5s ease-in-out;
+}
+
+.modalTitle {
+  margin-bottom: 10px;
+  color: #ef4444;
+  font-weight: bold;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  text-shadow: 0 3px 6px rgba(239, 68, 68, 0.5);
+  text-transform: uppercase;
+}
+
+.loseMessage {
+  margin-bottom: 25px;
+  color: #a0aec0;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+.closeButton {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #e53e3e 0%, #c53030 100%);
+  box-shadow:
+    0 4px 12px rgba(229, 62, 62, 0.3),
+    inset 0 2px 6px rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(145deg, #fc8181 0%, #e53e3e 100%);
+    box-shadow:
+      0 6px 15px rgba(229, 62, 62, 0.4),
+      inset 0 2px 6px rgba(255, 255, 255, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow:
+      0 2px 6px rgba(229, 62, 62, 0.2),
+      inset 0 2px 6px rgba(255, 255, 255, 0.1);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes losePulse {
+  0% {
+    background: rgba(255, 140, 0, 0.9);
+  }
+  100% {
+    background: rgba(255, 165, 0, 0.95);
+  }
+}
+
+@media (max-width: 768px) {
+  .modal {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .modalTitle {
+    font-size: 2rem;
+  }
+
+  .loseMessage {
+    font-size: 1rem;
+  }
+
+  .closeButton {
+    padding: 10px 25px;
+    font-size: 1rem;
+  }
+}
