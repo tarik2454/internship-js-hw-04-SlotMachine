@@ -1,6 +1,7 @@
 :root {
   --text-primary: #a5dff7;
   --background-primary: #daf3a6;
+  --accent-color: #54c3ee;
 }
 
 * {
@@ -17,7 +18,6 @@ body {
 
 body {
   position: relative;
-  height: 100vh;
   background: var(--background-primary);
   color: var(--text-primary);
   font-size: 14px;
@@ -30,4 +30,10 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+image {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }

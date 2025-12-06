@@ -50,10 +50,22 @@ export default function RootLayout({
       <body
         className={`${pocketMonk.variable} ${bungee.variable} ${poetsenOne.variable}`}
       >
-        <Image className={styles.skyTop} src={skyTop} alt="Tokio Slots" />
+        <Image
+          className={styles.skyTop}
+          src={skyTop}
+          alt="Sky background top"
+        />
         {children}
-        <Image className={styles.tokiocity} src={tokiocity} alt="Tokio Slots" />
-        <Image className={styles.skyBottom} src={skyBottom} alt="Tokio Slots" />
+        <Image
+          className={styles.tokiocity}
+          src={tokiocity}
+          alt="City skyline background"
+        />
+        <Image
+          className={styles.skyBottom}
+          src={skyBottom}
+          alt="Sky background bottom"
+        />
       </body>
     </html>
   );

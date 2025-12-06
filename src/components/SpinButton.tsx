@@ -24,7 +24,7 @@ export const SpinButton = ({ onSpin, disabled }: SpinButtonProps) => {
       <Image
         className={styles.buttonBase}
         src={buttonBase}
-        alt="Spin button base"
+        alt="Spin button background"
       />
     </div>
   );

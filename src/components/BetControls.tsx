@@ -12,37 +12,40 @@ export const BetControls = () => {
     useSlotLogic();
 
   return (
-    <div className={styles.betControls}>
-      <button
-        className={styles.betButton}
-        onClick={handleDecrementBet}
-        disabled={isSpinning}
-        type="button"
-      >
-        <Image
-          className={styles.buttonPlus}
-          src={buttonPlus}
-          alt="Button plus"
-        />
-      </button>
+    <>
+      <div className={styles.betLabel}>Place a bid</div>
+      <div className={styles.betControls}>
+        <button
+          className={styles.betButton}
+          onClick={handleDecrementBet}
+          disabled={isSpinning}
+          type="button"
+        >
+          <Image
+            className={styles.buttonPlus}
+            src={buttonPlus}
+            alt="Decrease bet amount button"
+          />
+        </button>
 
-      <div className={styles.betDisplay}>
-        <Image src={betDisplayOverlay} alt="Bet display overlay" />
-        <span className={styles.betAmount}>{currentBet}</span>
+        <div className={styles.betDisplay}>
+          <Image src={betDisplayOverlay} alt="Bet amount display background" />
+          <span className={styles.betAmount}>{currentBet}</span>
+        </div>
+
+        <button
+          className={styles.betButton}
+          onClick={handleIncrementBet}
+          disabled={isSpinning}
+          type="button"
+        >
+          <Image
+            className={styles.buttonMinus}
+            src={buttonMinus}
+            alt="Increase bet amount button"
+          />
+        </button>
       </div>
-
-      <button
-        className={styles.betButton}
-        onClick={handleIncrementBet}
-        disabled={isSpinning}
-        type="button"
-      >
-        <Image
-          className={styles.buttonMinus}
-          src={buttonMinus}
-          alt="Button minus"
-        />
-      </button>
-    </div>
+    </>
   );
 };
