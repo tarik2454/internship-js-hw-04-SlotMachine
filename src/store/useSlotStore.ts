@@ -89,8 +89,8 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
       balance: balance - currentBet,
     });
 
-    // Stop reels sequentially with delays
-    const stopDelays = [800, 1200, 1600, 2000]; // 500-1500ms per reel
+    // Stop reels sequentially with delays (left to right)
+    const stopDelays = [800, 1200, 1600, 2000]; // 400ms intervals between stops for better visual effect
 
     stopDelays.forEach((delay, index) => {
       setTimeout(() => {
@@ -133,15 +133,24 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
         localStorage.setItem("slotMachine_balance", newBalance.toString());
       }
 
+      // Update state immediately (balance, reels, etc) but delay gameResult
       set({
         reels: newReels,
         spinningReels: newSpinningReels,
-        isSpinning: false,
+        // isSpinning: false, // Don't stop spinning yet effectively (keep button disabled)
         balance: newBalance,
         lastWin: winAmount > 0 ? winAmount : null,
-        gameResult,
+        gameResult: "spinning", // Keep as spinning during animation
         jackpot: newJackpot,
       });
+
+      // Show result modal 1 second after last reel visually stops
+      // Last reel trigger: 2000ms. Animation: ~800ms. Visual Stop: ~2800ms.
+      // Target: 2800ms + 1000ms = 3800ms.
+      // Delay from trigger: 3800 - 2000 = 1800ms.
+      setTimeout(() => {
+        set({ gameResult, isSpinning: false });
+      }, 1800);
     } else {
       // Just update this reel
       set({
