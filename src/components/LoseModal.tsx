@@ -7,10 +7,19 @@ import styles from "./LoseModal.module.scss";
 export const LoseModal = () => {
   const { gameResult, handleResetGame } = useSlotLogic();
 
-  if (gameResult !== 'lose') return null;
+  if (gameResult !== "lose") return null;
+
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      handleResetGame();
+    }
+  };
 
   return (
-    <div className={`${styles.modalOverlay} ${styles.loseBackground}`}>
+    <div
+      className={`${styles.modalOverlay} ${styles.loseBackground}`}
+      onClick={handleOverlayClick}
+    >
       <div className={styles.modal}>
         <div className={styles.modalContent}>
           <div className={styles.loseIcon}>😔</div>

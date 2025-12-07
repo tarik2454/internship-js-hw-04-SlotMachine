@@ -8,58 +8,41 @@
   left: 0;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.8);
+  background: #a5dff7;
 }
 
 .modal {
-  width: 90%;
-  max-width: 300px;
-  padding: 20px;
-  border: 3px solid #ffd700;
-  border-radius: 12px;
-  background: #222;
-  text-align: center;
-}
-
-.modalContent {
-  color: white;
-  text-align: center;
-}
-
-.winIcon {
-  margin-bottom: 15px;
-  font-size: 4rem;
-  animation: bounce 0.6s ease-in-out;
-}
-
-.modalTitle {
-  margin-bottom: 10px;
-  color: #ffd700;
-  font-weight: bold;
-  font-size: 2.5rem;
-  letter-spacing: 2px;
-  text-shadow: 0 3px 6px rgba(255, 215, 0, 0.5);
-  text-transform: uppercase;
+  z-index: 1003;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .winAmount {
-  margin-bottom: 25px;
-  color: #68d391;
-  font-weight: bold;
-  font-size: 2rem;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 4px rgba(104, 211, 145, 0.5);
+  position: absolute;
+  top: 61%;
+  left: 49%;
+  -webkit-text-stroke: 3px rgba(81, 82, 26, 0.2);
+  transform: translate(-50%, -50%);
+  color: #1b0d38;
+  font-size: 22px;
+  font-family: var(--font-bungee);
 }
 
 .closeButton {
+  position: absolute;
+  top: 120%;
+  left: 50%;
   padding: 12px 30px;
+  transform: translate(-50%, -50%);
   border: none;
   border-radius: 25px;
   background: linear-gradient(145deg, #38a169 0%, #2f855a 100%);
   box-shadow:
     0 4px 12px rgba(56, 161, 105, 0.3),
     inset 0 2px 6px rgba(255, 255, 255, 0.2);
-  color: white;
+  color: #a5dff7;
   font-weight: bold;
   font-size: 1.1rem;
   letter-spacing: 1px;
@@ -68,7 +51,7 @@
   transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translate(-50%, -50%) translateY(-2px);
     background: linear-gradient(145deg, #48bb78 0%, #38a169 100%);
     box-shadow:
       0 6px 15px rgba(56, 161, 105, 0.4),
@@ -76,45 +59,111 @@
   }
 
   &:active {
-    transform: translateY(0);
+    transform: translate(-50%, -50%) translateY(0);
     box-shadow:
       0 2px 6px rgba(56, 161, 105, 0.2),
       inset 0 2px 6px rgba(255, 255, 255, 0.1);
   }
 }
 
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
+.winLight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2000px;
+  height: 2000px;
+  transform: translate(-50%, -50%);
+  animation: rotateClockwise 2s linear infinite;
+  pointer-events: none;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(255, 255, 0, 0.8) 10deg,
+      transparent 20deg,
+      rgba(255, 215, 0, 0.6) 30deg,
+      transparent 40deg,
+      rgba(255, 255, 0, 0.8) 50deg,
+      transparent 60deg,
+      rgba(255, 215, 0, 0.6) 70deg,
+      transparent 80deg,
+      rgba(255, 255, 0, 0.8) 90deg,
+      transparent 100deg,
+      rgba(255, 215, 0, 0.6) 110deg,
+      transparent 120deg,
+      rgba(255, 255, 0, 0.8) 130deg,
+      transparent 140deg,
+      rgba(255, 215, 0, 0.6) 150deg,
+      transparent 160deg,
+      rgba(255, 255, 0, 0.8) 170deg,
+      transparent 180deg,
+      rgba(255, 215, 0, 0.6) 190deg,
+      transparent 200deg,
+      rgba(255, 255, 0, 0.8) 210deg,
+      transparent 220deg,
+      rgba(255, 215, 0, 0.6) 230deg,
+      transparent 240deg,
+      rgba(255, 255, 0, 0.8) 250deg,
+      transparent 260deg,
+      rgba(255, 215, 0, 0.6) 270deg,
+      transparent 280deg,
+      rgba(255, 255, 0, 0.8) 290deg,
+      transparent 300deg,
+      rgba(255, 215, 0, 0.6) 310deg,
+      transparent 320deg,
+      rgba(255, 255, 0, 0.8) 330deg,
+      transparent 340deg,
+      rgba(255, 215, 0, 0.6) 350deg,
+      transparent 360deg
+    );
+    content: "";
+    filter: blur(3px);
   }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 0, 0.3) 0%,
+      rgba(255, 215, 0, 0.2) 30%,
+      rgba(255, 255, 0, 0.1) 60%,
+      transparent 100%
+    );
+    content: "";
+    animation: pulseGlow 1.5s ease-in-out infinite alternate;
   }
 }
 
-@media (max-width: 768px) {
-  .modal {
-    margin: 20px;
-    padding: 20px;
+@keyframes pulseGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
   }
-
-  .modalTitle {
-    font-size: 2rem;
+  100% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
   }
+}
 
-  .winAmount {
-    font-size: 1.5rem;
+@keyframes rotateClockwise {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
-
-  .closeButton {
-    padding: 10px 25px;
-    font-size: 1rem;
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
