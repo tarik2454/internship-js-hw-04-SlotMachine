@@ -41,6 +41,17 @@
   }
 }
 
+@media (max-width: 768px) {
+  @keyframes spin {
+    0% {
+      transform: translate(-50%, -6000px);
+    }
+    100% {
+      transform: translate(-50%, -5200px);
+    }
+  }
+}
+
 .symbol {
   display: flex;
   flex-shrink: 0;
@@ -99,21 +110,5 @@
   }
   50% {
     opacity: 1;
-  }
-}
-
-@media (max-width: 768px) {
-  .reel {
-    width: 80px;
-    height: 360px;
-  }
-
-  .symbol {
-    width: 65px;
-    height: 110px;
-  }
-
-  .symbolContent {
-    font-size: 42px;
   }
 }
