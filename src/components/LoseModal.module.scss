@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .modalOverlay {
   display: flex;
   z-index: 1000;
@@ -90,10 +92,10 @@
 
   @for $i from 1 through 60 {
     &:nth-child(#{$i}) {
-      left: random(100) * 1%;
-      height: (random(15) + 15) * 1px;
-      animation-duration: (random(15) / 10 + 1) * 1s;
-      animation-delay: (random(50) / 10 * -1) * 1s;
+      left: math.random(100) * 1%;
+      height: (math.random(15) + 15) * 1px;
+      animation-duration: (math.div(math.random(15), 10) + 1) * 1s;
+      animation-delay: (math.div(math.random(50), 10) * -1) * 1s;
     }
   }
 }
