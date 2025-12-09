@@ -1,15 +1,19 @@
 .spinButtonWrapper {
-  z-index: 2;
   position: absolute;
+  right: 0;
   bottom: 138px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .spinButton {
+  z-index: 5;
+  position: relative;
+  top: -35px;
   padding: 0;
   border-radius: 50%;
-  cursor: pointer;
+  pointer-events: none;
 
   &:active:not(.disabled) {
     .spin {
@@ -20,6 +24,11 @@
   &.disabled {
     cursor: not-allowed;
   }
+
+  @media screen and (max-width: 375px) {
+    top: -16px;
+    left: 1px;
+  }
 }
 
 .spin {
@@ -28,11 +37,14 @@
   top: -100%;
   left: 50%;
   transform: translate(-51%, -50%);
+  cursor: pointer;
+  pointer-events: auto;
   transition: transform 0.1s ease;
 
   @media screen and (max-width: 375px) {
     top: 0;
     left: 88%;
+    width: auto;
     height: 58px;
   }
 }
