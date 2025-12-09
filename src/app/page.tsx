@@ -5,6 +5,7 @@ import { SpinButton } from "../components/SpinButton";
 import { BetControls } from "../components/BetControls";
 import { WinModal } from "../components/WinModal";
 import { LoseModal } from "../components/LoseModal";
+import { CelebrationEffects } from "../components/CelebrationEffects";
 import { useSlotLogic } from "../hooks/useSlotLogic";
 import styles from "./page.module.scss";
 import titleBase from "../image/main-page/title-base.svg";
@@ -13,7 +14,9 @@ import Image from "next/image";
 import { Balance } from "@/components/Balance";
 
 export default function Home() {
-  const { handleSpin, canSpin } = useSlotLogic();
+  const { handleSpin, canSpin, showCelebration } = useSlotLogic();
+
+  const isWinPending = showCelebration;
 
   return (
     <div className={styles.homeWrapper}>
@@ -25,7 +28,7 @@ export default function Home() {
             alt="Slot machine title background"
           />
           <Image
-            className={styles.tokioSlots}
+            className={`${styles.tokioSlots} ${isWinPending ? styles.titleWinEffect : ""}`}
             src={tokioSlots}
             alt="Tokio Slots game title"
           />
@@ -36,6 +39,7 @@ export default function Home() {
           <BetControls />
         </div>
 
+        <CelebrationEffects />
         <WinModal />
         <LoseModal />
       </div>

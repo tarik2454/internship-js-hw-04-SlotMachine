@@ -10,6 +10,7 @@ export const useSlotLogic = () => {
     lastWin,
     gameResult,
     jackpot,
+    showCelebration,
     spin,
     setBet,
     incrementBet,
@@ -42,12 +43,10 @@ export const useSlotLogic = () => {
   }, [decrementBet]);
 
   const handleResetGame = useCallback(() => {
-    // Close the modal without resetting the balance
     closeModal();
   }, [closeModal]);
 
   const getVisibleSymbols = useCallback(() => {
-    // Return the first row of each reel
     return reels.map((reel) => reel[0]);
   }, [reels]);
 
@@ -59,6 +58,7 @@ export const useSlotLogic = () => {
     lastWin,
     gameResult,
     jackpot,
+    showCelebration,
     canSpin: canSpin(),
     handleSpin,
     handleSetBet,

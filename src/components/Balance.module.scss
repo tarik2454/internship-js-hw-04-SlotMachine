@@ -7,7 +7,7 @@
 }
 
 .icon {
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 575px) {
     width: 137px;
     height: 43px;
   }
@@ -19,7 +19,7 @@
   left: 50%;
   transform: translateX(-50%);
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 575px) {
     top: -12px;
   }
 }
@@ -34,7 +34,7 @@
   font-size: 30px;
   font-family: var(--font-bungee);
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 575px) {
     top: 52%;
     font-size: 22px;
   }
@@ -43,7 +43,7 @@
 .balanceBase {
   height: 80px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 575px) {
     width: 251px;
     height: 76px;
   }

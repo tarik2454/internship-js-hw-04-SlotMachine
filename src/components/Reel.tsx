@@ -23,13 +23,12 @@ export const Reel = ({ reelIndex, reelData }: ReelProps) => {
 
   const isReelSpinning = spinningReels[reelIndex] || false;
 
-  // Set initial position on mount
   useEffect(() => {
     if (reelContainerRef.current && !lastResultRef.current) {
       const container = reelContainerRef.current;
       const symbolHeight = 120;
-      const initialIndex = reelData[1]; // Show middle symbol
-      // Center vertically: -55px adjustment (roughly half symbol height adjustment for container center)
+      const initialIndex = reelData[1];
+
       const initialShift = -(initialIndex * symbolHeight) - 55;
 
       container.style.transform = `translate(-50%, ${initialShift}px)`;
@@ -41,8 +40,6 @@ export const Reel = ({ reelIndex, reelData }: ReelProps) => {
     const container = reelContainerRef.current;
     if (!container) return;
 
-    // Clear any existing timeout on unmount or re-render if needed
-    // (We keep the timeout running if it's for animation completion)
     if (animationTimeoutRef.current) {
       clearTimeout(animationTimeoutRef.current);
       animationTimeoutRef.current = null;
@@ -54,23 +51,16 @@ export const Reel = ({ reelIndex, reelData }: ReelProps) => {
     const endShift =
       -(targetSet * SYMBOLS.length + targetIndex) * symbolHeight - 55;
 
-    // START SPINNING
     if (isReelSpinning && !activeSpinRef.current) {
       activeSpinRef.current = true;
       stopAnimationTriggered.current = false;
       isAnimating.current = false;
 
-      // Start infinite spinning (CSS animation)
       container.classList.remove(styles.transitionActive);
       container.classList.add(styles.spinning);
 
       lastResultRef.current = { index: targetIndex };
-    }
-
-    // STOP SPINNING
-    // Trigger when we are officially not spinning anymore, but we think we are (activeSpinRef true)
-    // and we haven't already triggered the stop sequence.
-    else if (
+    } else if (
       !isReelSpinning &&
       activeSpinRef.current &&
       !stopAnimationTriggered.current
@@ -78,10 +68,8 @@ export const Reel = ({ reelIndex, reelData }: ReelProps) => {
       stopAnimationTriggered.current = true;
       isAnimating.current = true;
 
-      // Stop infinite spinning and prepare for landing
       container.classList.remove(styles.spinning);
 
-      // Snap to high position (Set 8) to start landing animation
       const resetSet = 8;
       const resetShift =
         -(resetSet * SYMBOLS.length + targetIndex) * symbolHeight - 55;
@@ -90,35 +78,29 @@ export const Reel = ({ reelIndex, reelData }: ReelProps) => {
       container.style.transform = `translate(-50%, ${resetShift}px)`;
       void container.offsetWidth;
 
-      // Start stop animation immediately (delay is handled in store)
       (() => {
         if (!container) return;
 
-        // Apply transition and animate to target (Low Set 2)
         container.classList.add(styles.transitionActive);
         container.style.transform = `translate(-50%, ${endShift}px)`;
 
         lastResultRef.current = { index: targetIndex };
 
-        // Ensure animation completes
         animationTimeoutRef.current = setTimeout(() => {
           container.classList.remove(styles.transitionActive);
           isAnimating.current = false;
-          // Mark spin cycle as fully complete
+
           activeSpinRef.current = false;
         }, 1000);
       })();
     }
 
-    // Cleanup function
     return () => {
       if (animationTimeoutRef.current) {
         clearTimeout(animationTimeoutRef.current);
         animationTimeoutRef.current = null;
       }
       container.classList.remove(styles.transitionActive);
-      // Do not reset activeSpinRef here, as it's managed by the spin/stop logic
-      // isAnimating.current = false; // This might be reset by the timeout
     };
   }, [isReelSpinning, reelData, reelIndex]);
 

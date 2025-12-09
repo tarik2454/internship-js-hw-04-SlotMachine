@@ -5,6 +5,14 @@
   left: 0;
   width: fit-content;
   margin: 0 auto;
+
+  @media screen and (max-width: 575px) {
+    bottom: 169px;
+  }
+
+  @media screen and (max-width: 375px) {
+    bottom: 138px;
+  }
 }
 
 .spinButton {
@@ -25,7 +33,7 @@
     cursor: not-allowed;
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 575px) {
     top: -16px;
     left: 1px;
   }
@@ -41,7 +49,7 @@
   pointer-events: auto;
   transition: transform 0.1s ease;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 575px) {
     top: 0;
     left: 88%;
     width: auto;
@@ -56,7 +64,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 575px) {
     top: 69%;
     height: 73px;
   }

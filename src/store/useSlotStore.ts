@@ -3,17 +3,16 @@ import { PAYOUT_MULTIPLIERS } from "../utils/symbols";
 import { calculateWin } from "../utils/calculateWin";
 
 interface SlotStore {
-  // State
   balance: number;
   currentBet: number;
-  reels: number[][]; // 4 reels
+  reels: number[][];
   isSpinning: boolean;
   spinningReels: boolean[];
   lastWin: number | null;
   gameResult: "idle" | "spinning" | "win" | "lose" | null;
   jackpot: number;
+  showCelebration: boolean;
 
-  // Actions
   spin: () => void;
   setBet: (amount: number) => void;
   incrementBet: () => void;
@@ -24,9 +23,7 @@ interface SlotStore {
   closeModal: () => void;
 }
 
-// Load balance from localStorage
 const getInitialBalance = (): number => {
-  // Always return default value for SSR consistency
   return 1000;
 };
 
@@ -44,22 +41,22 @@ const initialState: Omit<
   balance: getInitialBalance(),
   currentBet: 10,
   reels: [
-    [0, 1, 2], // Reel 1 - 3 positions
-    [0, 1, 2], // Reel 2 - 3 positions
-    [0, 1, 2], // Reel 3 - 3 positions
-    [0, 1, 2], // Reel 4 - 3 positions
+    [0, 1, 2],
+    [0, 1, 2],
+    [0, 1, 2],
+    [0, 1, 2],
   ],
   isSpinning: false,
   spinningReels: [false, false, false, false],
   lastWin: null,
   gameResult: "idle",
   jackpot: 10000,
+  showCelebration: false,
 };
 
 export const useSlotStore = create<SlotStore>((set, get) => ({
   ...initialState,
 
-  // Initialize balance from localStorage on client
   initializeBalance: () => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("slotMachine_balance");
@@ -80,7 +77,6 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
       return;
     }
 
-    // Start spinning all reels
     set({
       isSpinning: true,
       spinningReels: [true, true, true, true],
@@ -89,8 +85,7 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
       balance: balance - currentBet,
     });
 
-    // Stop reels sequentially with delays (left to right)
-    const stopDelays = [800, 1200, 1600, 2000]; // 400ms intervals between stops for better visual effect
+    const stopDelays = [800, 1200, 1600, 2000];
 
     stopDelays.forEach((delay, index) => {
       setTimeout(() => {
@@ -102,7 +97,6 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
   stopReel: (reelIndex: number) => {
     const { reels, spinningReels } = get();
 
-    // Generate random positions for this reel
     const newReelPositions = Array.from({ length: 3 }, () =>
       Math.floor(Math.random() * 7),
     );
@@ -113,11 +107,9 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
     const newSpinningReels = [...spinningReels];
     newSpinningReels[reelIndex] = false;
 
-    // Check if all reels have stopped
     const allStopped = newSpinningReels.every((spinning) => !spinning);
 
     if (allStopped) {
-      // Calculate win when all reels stopped
       const { currentBet, balance, jackpot } = get();
 
       const { winAmount, gameResult, newJackpot } = calculateWin(
@@ -128,31 +120,34 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
 
       const newBalance = balance + winAmount;
 
-      // Save balance to localStorage
       if (typeof window !== "undefined") {
         localStorage.setItem("slotMachine_balance", newBalance.toString());
       }
 
-      // Update state immediately (balance, reels, etc) but delay gameResult
       set({
         reels: newReels,
         spinningReels: newSpinningReels,
-        // isSpinning: false, // Don't stop spinning yet effectively (keep button disabled)
+
         balance: newBalance,
         lastWin: winAmount > 0 ? winAmount : null,
-        gameResult: "spinning", // Keep as spinning during animation
+        gameResult: "spinning",
         jackpot: newJackpot,
       });
 
-      // Show result modal 1 second after last reel visually stops
-      // Last reel trigger: 2000ms. Animation: ~800ms. Visual Stop: ~2800ms.
-      // Target: 2800ms + 1000ms = 3800ms.
-      // Delay from trigger: 3800 - 2000 = 1800ms.
+      if (winAmount > 0) {
+        console.log("Win detected in store, scheduling celebration...");
+        setTimeout(() => {
+          console.log("Firing celebration!");
+          set({ showCelebration: true });
+        }, 800);
+      } else {
+        console.log("No win, skipping celebration.");
+      }
+
       setTimeout(() => {
-        set({ gameResult, isSpinning: false });
-      }, 1800);
+        set({ gameResult, isSpinning: false, showCelebration: false });
+      }, 2800);
     } else {
-      // Just update this reel
       set({
         reels: newReels,
         spinningReels: newSpinningReels,

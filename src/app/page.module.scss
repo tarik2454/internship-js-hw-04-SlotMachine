@@ -10,7 +10,7 @@
   margin: 0 auto;
   padding: 0 15px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 575px) {
     padding: 0 19px;
   }
 }
@@ -25,13 +25,13 @@
   justify-content: center;
   width: 100%;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 575px) {
     top: 23px;
   }
 }
 
 .titleBase {
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 575px) {
     width: 228px;
     height: 46px;
   }
@@ -44,7 +44,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 575px) {
     width: 172px;
     height: 46px;
   }
@@ -59,4 +59,20 @@
   align-items: center;
   justify-content: center;
   transform: translate(-50%, -50%);
+}
+
+@keyframes liquidPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.titleWinEffect {
+  animation: liquidPulse 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }

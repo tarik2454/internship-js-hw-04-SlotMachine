@@ -9,14 +9,23 @@ import rightEye from "../image/slot-machine/right-eye.svg";
 import leftEye from "../image/slot-machine/left-eye.svg";
 import leverTop from "../image/slot-machine/lever-top.svg";
 import leverBottom from "../image/slot-machine/lever-down.svg";
-
 export const SlotMachine = () => {
-  const { reels, gameResult, isSpinning } = useSlotLogic();
+  const { reels, gameResult, isSpinning, showCelebration } = useSlotLogic();
+
+  const isWinPending = showCelebration;
 
   return (
     <div>
-      <Image src={rightEye} className={styles.rightEye} alt="Right eye" />
-      <Image src={leftEye} className={styles.leftEye} alt="Left eye" />
+      <Image
+        src={rightEye}
+        className={`${styles.rightEye} ${isWinPending ? styles.eyeWinEffect : ""}`}
+        alt="Right eye"
+      />
+      <Image
+        src={leftEye}
+        className={`${styles.leftEye} ${isWinPending ? styles.eyeWinEffect : ""}`}
+        alt="Left eye"
+      />
       <Image
         src={leverTop}
         className={`${styles.leverTop} ${isSpinning ? styles.hidden : ""}`}
