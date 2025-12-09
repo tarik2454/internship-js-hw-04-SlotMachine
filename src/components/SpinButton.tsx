@@ -4,7 +4,6 @@ import styles from "./SpinButton.module.scss";
 import Image from "next/image";
 import buttonBase from "../image/spin-button/button-base.svg";
 import spin from "../image/spin-button/spin.svg";
-
 interface SpinButtonProps {
   onSpin: () => void;
   disabled: boolean;
