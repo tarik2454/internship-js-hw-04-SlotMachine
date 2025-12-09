@@ -29,7 +29,11 @@ export const BetControls = () => {
         </button>
 
         <div className={styles.betDisplay}>
-          <Image src={betDisplayOverlay} alt="Bet amount display background" />
+          <Image
+            src={betDisplayOverlay}
+            className={styles.betDisplayOverlay}
+            alt="Bet amount display background"
+          />
           <span className={styles.betAmount}>{currentBet}</span>
         </div>
 

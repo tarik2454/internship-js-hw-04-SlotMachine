@@ -29,6 +29,12 @@
   left: 50%;
   transform: translate(-51%, -50%);
   transition: transform 0.1s ease;
+
+  @media screen and (max-width: 375px) {
+    top: 0;
+    left: 88%;
+    height: 58px;
+  }
 }
 
 .buttonBase {
@@ -37,4 +43,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @media screen and (max-width: 375px) {
+    top: 69%;
+    height: 73px;
+  }
 }

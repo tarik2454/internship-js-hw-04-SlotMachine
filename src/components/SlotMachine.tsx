@@ -14,7 +14,7 @@ export const SlotMachine = () => {
   const { reels, gameResult, isSpinning } = useSlotLogic();
 
   return (
-    <div className={styles.slotMachineWrapper}>
+    <div>
       <Image src={rightEye} className={styles.rightEye} alt="Right eye" />
       <Image src={leftEye} className={styles.leftEye} alt="Left eye" />
       <Image

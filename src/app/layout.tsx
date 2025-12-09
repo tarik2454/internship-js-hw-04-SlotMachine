@@ -7,6 +7,7 @@ import "../styles/globals.scss";
 import skyTop from "../image/main-page/sky-top.svg";
 import skyBottom from "../image/main-page/sky-bottom.svg";
 import tokiocity from "../image/main-page/tokiocity.svg";
+import skyBottomMobile from "../image/main-page/sky-bottom-mobile.svg";
 
 const pocketMonk = PocketMonk({
   src: [
@@ -65,6 +66,11 @@ export default function RootLayout({
           className={styles.skyBottom}
           src={skyBottom}
           alt="Sky background bottom"
+        />
+        <Image
+          className={styles.skyBottomMobile}
+          src={skyBottomMobile}
+          alt="Sky background bottom mobile"
         />
       </body>
     </html>

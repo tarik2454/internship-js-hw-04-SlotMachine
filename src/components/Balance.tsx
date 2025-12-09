@@ -22,10 +22,14 @@ export const Balance = () => {
       <div className={styles.titleWrapper}>
         {lastWin === jackpot ? (
           <span className={styles.jackpotAmount}>
-            <Image src={jackpotIcon} alt="Jackpot icon" />
+            <Image
+              src={jackpotIcon}
+              className={styles.icon}
+              alt="Jackpot icon"
+            />
           </span>
         ) : (
-          <Image src={balanceIcon} alt="Balance icon" />
+          <Image src={balanceIcon} className={styles.icon} alt="Balance icon" />
         )}
       </div>
 

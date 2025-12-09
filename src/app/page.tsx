@@ -19,7 +19,11 @@ export default function Home() {
     <div className={styles.homeWrapper}>
       <div className={styles.container}>
         <div className={styles.titleWrapper}>
-          <Image src={titleBase} alt="Slot machine title background" />
+          <Image
+            className={styles.titleBase}
+            src={titleBase}
+            alt="Slot machine title background"
+          />
           <Image
             className={styles.tokioSlots}
             src={tokioSlots}
@@ -36,6 +40,7 @@ export default function Home() {
         <LoseModal />
       </div>
       <SpinButton onSpin={handleSpin} disabled={!canSpin} />
+
       <Balance />
     </div>
   );

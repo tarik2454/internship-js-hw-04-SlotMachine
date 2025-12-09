@@ -1,28 +1,54 @@
-.slotMachineWrapper {
-  position: relative;
-}
-
 .rightEye {
+  z-index: 2;
   position: absolute;
   top: -27px;
   left: 80px;
+
+  @media screen and (max-width: 375px) {
+    top: -14px;
+    left: 55px;
+    width: 33px;
+    height: 31px;
+  }
 }
 
 .leftEye {
   position: absolute;
   top: -25px;
   right: 104px;
+
+  @media screen and (max-width: 375px) {
+    top: -14px;
+    right: 73px;
+    width: 33px;
+    height: 31px;
+  }
 }
 
 .leverTop {
   position: absolute;
+  top: 23px;
   right: -4px;
+
+  @media screen and (max-width: 375px) {
+    top: 26px;
+    right: -2px;
+    width: 22px;
+    height: 64px;
+  }
 }
 
 .leverBottom {
   position: absolute;
   top: 120px;
   right: -4px;
+
+  @media screen and (max-width: 375px) {
+    top: 90px;
+    right: -2px;
+    width: 22px;
+    height: 64px;
+  }
 }
 
 .leverTop.hidden {
@@ -49,9 +75,15 @@
   position: absolute;
   top: 48px;
   left: 51.3px;
-
   justify-content: center;
   gap: 16px;
+
+  @media screen and (max-width: 375px) {
+    top: 40px;
+    left: 164px;
+    gap: 8px;
+    transform: translate(-50%);
+  }
 }
 
 .lightRays {
@@ -95,5 +127,13 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.slotMachineBase {
+  @media screen and (max-width: 375px) {
+    width: 337px;
+    height: 200px;
+    margin-bottom: 24px;
   }
 }
