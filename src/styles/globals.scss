@@ -1,13 +1,13 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --text-primary: #a5dff7;
+  --background-primary: #daf3a6;
+  --accent-color: #54c3ee;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html,
@@ -17,28 +17,14 @@ body {
 }
 
 body {
-  height: 100vh;
-
-  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  background: var(--background-primary);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: var(--font-pocket-monk);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  background: var(--background);
-  background-image: url("/main-bg-mobile.webp");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: var(--foreground);
-
-  @media (min-width: 376px) {
-    background-image: url("/main-bg.webp");
-  }
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 a {
@@ -46,8 +32,8 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+image {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }

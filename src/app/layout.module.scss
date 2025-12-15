@@ -1,0 +1,49 @@
+.skyTop {
+  z-index: 2;
+  position: absolute;
+  top: -54px;
+  left: 0;
+}
+
+.tokiocity {
+  z-index: -1;
+  position: absolute;
+  bottom: 38px;
+  left: 0;
+
+  @media screen and (max-width: 575px) {
+    display: none;
+  }
+}
+
+.skyBottom {
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  @media screen and (max-width: 575px) {
+    display: none;
+  }
+}
+
+.skyBottomMobile {
+  display: none;
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+
+  @media screen and (min-width: 376px) and (max-width: 575px) {
+    bottom: 0;
+    height: 250px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  @media screen and (max-width: 575px) {
+    display: block;
+  }
+}

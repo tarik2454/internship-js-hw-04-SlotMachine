@@ -1,0 +1,71 @@
+.spinButtonWrapper {
+  position: absolute;
+  right: 0;
+  bottom: 138px;
+  left: 0;
+  width: fit-content;
+  margin: 0 auto;
+
+  @media screen and (max-width: 575px) {
+    bottom: 169px;
+  }
+
+  @media screen and (max-width: 375px) {
+    bottom: 138px;
+  }
+}
+
+.spinButton {
+  z-index: 5;
+  position: relative;
+  top: -35px;
+  padding: 0;
+  border-radius: 50%;
+  pointer-events: none;
+
+  &:active:not(.disabled) {
+    .spin {
+      transform: translate(-51%, -50%) translateY(4px) scaleY(0.95);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  @media screen and (max-width: 575px) {
+    top: -16px;
+    left: 1px;
+  }
+}
+
+.spin {
+  z-index: 2;
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translate(-51%, -50%);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.1s ease;
+
+  @media screen and (max-width: 575px) {
+    top: 0;
+    left: 88%;
+    width: auto;
+    height: 58px;
+  }
+}
+
+.buttonBase {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media screen and (max-width: 575px) {
+    top: 69%;
+    height: 73px;
+  }
+}

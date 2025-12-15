@@ -1,0 +1,123 @@
+.reel {
+  position: relative;
+  width: 81px;
+  height: 146px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #333;
+
+  @media screen and (max-width: 575px) {
+    width: 58px;
+    height: 103px;
+  }
+}
+
+.reelWindow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.reelContainer {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  flex-direction: column;
+  gap: 10px;
+  transform: translate(-50%, -50%);
+
+  &.transitionActive {
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &.spinning {
+    animation: spin 0.4s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -6720px);
+  }
+  100% {
+    transform: translate(-50%, -5880px);
+  }
+}
+
+@media (max-width: 768px) {
+  @keyframes spin {
+    0% {
+      transform: translate(-50%, -6000px);
+    }
+    100% {
+      transform: translate(-50%, -5200px);
+    }
+  }
+}
+
+.symbol {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 110px;
+  border-radius: 4px;
+  background: #333;
+  font-size: 18px;
+}
+
+.symbolContent {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+  @media screen and (max-width: 575px) {
+    font-size: 34px;
+  }
+}
+
+.reelBorder {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, transparent, #ffd700, transparent);
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  pointer-events: none;
+}
+
+.spinEffect {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  animation: spinFlash 0.3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes spinFlash {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
