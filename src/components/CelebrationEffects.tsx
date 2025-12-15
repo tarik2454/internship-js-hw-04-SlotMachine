@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSlotStore } from "../store/useSlotStore";
 import styles from "./CelebrationEffects.module.scss";
 import Image from "next/image";
-import { useMemo } from "react";
+import { memo } from "react";
 
 import cherry from "../image/props/cheryslot.svg";
 import seven from "../image/props/7slot.svg";
@@ -41,13 +41,16 @@ const generateParticles = (count: number) => {
     delay: Math.random() * 0.1,
     scale: Math.random() * 0.5 + 0.5,
     depth: Math.random() > 0.5 ? 5 : 1,
+    xOffset: Math.random() * 200 - 100,
+    rotate1: Math.random() * 360,
+    rotate2: Math.random() * 1080 + 360,
   }));
 };
 
-export const CelebrationEffects = () => {
-  const { showCelebration } = useSlotStore();
+export const CelebrationEffects = memo(() => {
+  const showCelebration = useSlotStore((state) => state.showCelebration);
 
-  const particles = useMemo(() => generateParticles(50), [showCelebration]);
+  const particles = generateParticles(50);
 
   return (
     <AnimatePresence>
@@ -71,11 +74,11 @@ export const CelebrationEffects = () => {
                   opacity: 0,
                 }}
                 animate={{
-                  x: ["-50%", explodeX, explodeX + (Math.random() * 200 - 100)],
+                  x: ["-50%", explodeX, explodeX + particle.xOffset],
                   y: ["-50%", explodeY, explodeY + 1000],
                   scale: [0, particle.scale, particle.scale],
                   opacity: [0, 1, 1, 0],
-                  rotate: [0, Math.random() * 360, Math.random() * 1080 + 360],
+                  rotate: [0, particle.rotate1, particle.rotate2],
                 }}
                 transition={{
                   duration: 1.8,
@@ -97,4 +100,6 @@ export const CelebrationEffects = () => {
       )}
     </AnimatePresence>
   );
-};
+});
+
+CelebrationEffects.displayName = "CelebrationEffects";

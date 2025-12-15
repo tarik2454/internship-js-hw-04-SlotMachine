@@ -6,6 +6,7 @@ import buttonPlus from "../image/bet-controls/button-plus.svg";
 import buttonMinus from "../image/bet-controls/button-minus.svg";
 import betDisplayOverlay from "../image/bet-controls/bet-display.svg";
 import Image from "next/image";
+import { Button } from "./shared/Button";
 
 export const BetControls = () => {
   const { currentBet, handleDecrementBet, handleIncrementBet, isSpinning } =
@@ -15,7 +16,7 @@ export const BetControls = () => {
     <>
       <div className={styles.betLabel}>Place a bid</div>
       <div className={styles.betControls}>
-        <button
+        <Button
           className={styles.betButton}
           onClick={handleDecrementBet}
           disabled={isSpinning}
@@ -26,7 +27,7 @@ export const BetControls = () => {
             src={buttonPlus}
             alt="Decrease bet amount button"
           />
-        </button>
+        </Button>
 
         <div className={styles.betDisplay}>
           <Image
@@ -37,7 +38,7 @@ export const BetControls = () => {
           <span className={styles.betAmount}>{currentBet}</span>
         </div>
 
-        <button
+        <Button
           className={styles.betButton}
           onClick={handleIncrementBet}
           disabled={isSpinning}
@@ -48,7 +49,7 @@ export const BetControls = () => {
             src={buttonMinus}
             alt="Increase bet amount button"
           />
-        </button>
+        </Button>
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bungee, Poetsen_One } from "next/font/google";
+import { Bungee } from "next/font/google";
 import PocketMonk from "next/font/local";
 import Image from "next/image";
 import styles from "./layout.module.scss";
@@ -29,13 +29,6 @@ const bungee = Bungee({
   display: "swap",
 });
 
-const poetsenOne = Poetsen_One({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-poetsen-one",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   title: "Slot Machine",
   description: "Classic slot machine game",
@@ -48,9 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${pocketMonk.variable} ${bungee.variable} ${poetsenOne.variable}`}
-      >
+      <body className={`${pocketMonk.variable} ${bungee.variable} `}>
         <Image
           className={styles.skyTop}
           src={skyTop}

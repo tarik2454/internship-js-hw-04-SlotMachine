@@ -15,7 +15,7 @@ export const SlotMachine = () => {
   const isWinPending = showCelebration;
 
   return (
-    <div>
+    <div className={styles.slotMachineContainer}>
       <Image
         src={rightEye}
         className={`${styles.rightEye} ${isWinPending ? styles.eyeWinEffect : ""}`}
