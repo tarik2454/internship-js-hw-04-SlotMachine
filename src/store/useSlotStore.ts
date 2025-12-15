@@ -1,43 +1,14 @@
 import { create } from "zustand";
-import { PAYOUT_MULTIPLIERS } from "../utils/symbols";
 import { calculateWin } from "../utils/calculateWin";
-
-interface SlotStore {
-  balance: number;
-  currentBet: number;
-  reels: number[][];
-  isSpinning: boolean;
-  spinningReels: boolean[];
-  lastWin: number | null;
-  gameResult: "idle" | "spinning" | "win" | "lose" | null;
-  jackpot: number;
-  showCelebration: boolean;
-
-  spin: () => void;
-  setBet: (amount: number) => void;
-  incrementBet: () => void;
-  decrementBet: () => void;
-  resetGame: () => void;
-  stopReel: (reelIndex: number) => void;
-  initializeBalance: () => void;
-  closeModal: () => void;
-}
+import { SlotStore, SlotState } from "../types/index";
+import { ANIMATION_TIMING } from "../utils/constants";
+import { SYMBOLS } from "../utils/symbols";
 
 const getInitialBalance = (): number => {
   return 1000;
 };
 
-const initialState: Omit<
-  SlotStore,
-  | "spin"
-  | "setBet"
-  | "incrementBet"
-  | "decrementBet"
-  | "resetGame"
-  | "stopReel"
-  | "initializeBalance"
-  | "closeModal"
-> = {
+const initialState: SlotState = {
   balance: getInitialBalance(),
   currentBet: 10,
   reels: [
@@ -85,9 +56,7 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
       balance: balance - currentBet,
     });
 
-    const stopDelays = [800, 1200, 1600, 2000];
-
-    stopDelays.forEach((delay, index) => {
+    ANIMATION_TIMING.REEL_STOP_DELAYS.forEach((delay, index) => {
       setTimeout(() => {
         get().stopReel(index);
       }, delay);
@@ -98,7 +67,7 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
     const { reels, spinningReels } = get();
 
     const newReelPositions = Array.from({ length: 3 }, () =>
-      Math.floor(Math.random() * 7),
+      Math.floor(Math.random() * SYMBOLS.length),
     );
 
     const newReels = [...reels];
@@ -135,18 +104,14 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
       });
 
       if (winAmount > 0) {
-        console.log("Win detected in store, scheduling celebration...");
         setTimeout(() => {
-          console.log("Firing celebration!");
           set({ showCelebration: true });
-        }, 800);
-      } else {
-        console.log("No win, skipping celebration.");
+        }, ANIMATION_TIMING.CELEBRATION_DELAY);
       }
 
       setTimeout(() => {
         set({ gameResult, isSpinning: false, showCelebration: false });
-      }, 2800);
+      }, ANIMATION_TIMING.FINAL_STATE_DELAY);
     } else {
       set({
         reels: newReels,

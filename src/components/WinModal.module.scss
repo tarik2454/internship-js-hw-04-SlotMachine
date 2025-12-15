@@ -1,13 +1,4 @@
 .modalOverlay {
-  display: flex;
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  align-items: center;
-  justify-content: center;
   background: #a5dff7;
 }
 
@@ -20,35 +11,20 @@
 }
 
 .winAmount {
-  position: absolute;
   top: 61%;
   left: 49%;
-  -webkit-text-stroke: 3px rgba(81, 82, 26, 0.2);
-  transform: translate(-50%, -50%);
-  color: #1b0d38;
-  font-size: 22px;
-  font-family: var(--font-bungee);
 }
 
 .closeButton {
   position: absolute;
   top: 120%;
   left: 50%;
-  padding: 12px 30px;
   transform: translate(-50%, -50%);
-  border: none;
-  border-radius: 25px;
   background: linear-gradient(145deg, #38a169 0%, #2f855a 100%);
   box-shadow:
     0 4px 12px rgba(56, 161, 105, 0.3),
     inset 0 2px 6px rgba(255, 255, 255, 0.2);
   color: #a5dff7;
-  font-weight: bold;
-  font-size: 1.1rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
 
   &:hover {
     transform: translate(-50%, -50%) translateY(-2px);

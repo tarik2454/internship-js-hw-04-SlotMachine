@@ -2,37 +2,42 @@ import { Symbol } from "../types";
 
 export const SYMBOLS: Symbol[] = [
   {
-    id: "cherry",
+    id: "one",
     name: "🍒",
     value: 1,
   },
   {
-    id: "lemon",
+    id: "two",
     name: "🍋",
     value: 2,
   },
   {
-    id: "orange",
+    id: "three",
     name: "🍊",
     value: 3,
   },
   {
-    id: "plum",
+    id: "four",
     name: "🍇",
     value: 4,
   },
   {
-    id: "diamond",
+    id: "five",
     name: "💎",
     value: 5,
   },
   {
-    id: "bar",
+    id: "six",
     name: "BAR",
     value: 6,
   },
   {
     id: "seven",
+    name: "🍎",
+    value: 7,
+  },
+  {
+    id: "eight",
     name: "7",
     value: 7,
   },
