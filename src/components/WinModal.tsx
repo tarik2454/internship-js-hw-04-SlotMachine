@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { useSlotLogic } from "../hooks/useSlotLogic";
+import { useSound } from "../hooks/useSound";
 import styles from "./WinModal.module.scss";
 import youWin from "../image/modal/you-win.svg";
 import Image from "next/image";
@@ -10,11 +12,21 @@ import { cx } from "../utils/classNames";
 import { Button } from "./shared/Button";
 
 export const WinModal = () => {
-  const { gameResult, lastWin, handleResetGame } = useSlotLogic();
+  const { gameResult, lastWin, handleResetGame, jackpot } = useSlotLogic();
+  const { playSound } = useSound();
+
+  const isOpen = gameResult === "win" && !!lastWin;
+
+  useEffect(() => {
+    if (isOpen) {
+      const isJackpot = lastWin === jackpot && jackpot > 0;
+      playSound(isJackpot ? "jackpot" : "win");
+    }
+  }, [isOpen, lastWin, jackpot, playSound]);
 
   return (
     <BaseModal
-      isOpen={gameResult === "win" && !!lastWin}
+      isOpen={isOpen}
       onClose={handleResetGame}
       сlassName={styles.modalOverlay}
       backgroundEffect={<div className={styles.winLight}></div>}

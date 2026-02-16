@@ -8,6 +8,13 @@ const getInitialBalance = (): number => {
   return 1000;
 };
 
+const getInitialMuted = (): boolean => {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("slotMachine_muted") === "true";
+  }
+  return false;
+};
+
 const initialState: SlotState = {
   balance: getInitialBalance(),
   currentBet: 10,
@@ -23,6 +30,7 @@ const initialState: SlotState = {
   gameResult: "idle",
   jackpot: 10000,
   showCelebration: false,
+  isMuted: getInitialMuted(),
 };
 
 export const useSlotStore = create<SlotStore>((set, get) => ({
@@ -152,5 +160,13 @@ export const useSlotStore = create<SlotStore>((set, get) => ({
       balance: getInitialBalance(),
       gameResult: "idle",
     });
+  },
+
+  toggleMute: () => {
+    const newMuted = !get().isMuted;
+    if (typeof window !== "undefined") {
+      localStorage.setItem("slotMachine_muted", String(newMuted));
+    }
+    set({ isMuted: newMuted });
   },
 }));

@@ -17,6 +17,7 @@ export interface SlotState {
   gameResult: GameResult;
   jackpot: number;
   showCelebration: boolean;
+  isMuted: boolean;
 }
 
 export interface SlotActions {
@@ -28,6 +29,7 @@ export interface SlotActions {
   stopReel: (reelIndex: number) => void;
   initializeBalance: () => void;
   closeModal: () => void;
+  toggleMute: () => void;
 }
 
 export type SlotStore = SlotState & SlotActions;

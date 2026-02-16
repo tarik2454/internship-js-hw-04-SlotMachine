@@ -1,6 +1,8 @@
 "use client";
 
+import { useCallback } from "react";
 import { useSlotLogic } from "../hooks/useSlotLogic";
+import { useSound } from "../hooks/useSound";
 import styles from "./BetControls.module.scss";
 import buttonPlus from "../image/bet-controls/button-plus.svg";
 import buttonMinus from "../image/bet-controls/button-minus.svg";
@@ -11,6 +13,17 @@ import { Button } from "./shared/Button";
 export const BetControls = () => {
   const { currentBet, handleDecrementBet, handleIncrementBet, isSpinning } =
     useSlotLogic();
+  const { playSound } = useSound();
+
+  const onDecrement = useCallback(() => {
+    playSound("click");
+    handleDecrementBet();
+  }, [playSound, handleDecrementBet]);
+
+  const onIncrement = useCallback(() => {
+    playSound("click");
+    handleIncrementBet();
+  }, [playSound, handleIncrementBet]);
 
   return (
     <>
@@ -18,7 +31,7 @@ export const BetControls = () => {
       <div className={styles.betControls}>
         <Button
           className={styles.betButton}
-          onClick={handleDecrementBet}
+          onClick={onDecrement}
           disabled={isSpinning}
           type="button"
         >
@@ -40,7 +53,7 @@ export const BetControls = () => {
 
         <Button
           className={styles.betButton}
-          onClick={handleIncrementBet}
+          onClick={onIncrement}
           disabled={isSpinning}
           type="button"
         >

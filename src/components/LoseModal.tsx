@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { useSlotLogic } from "../hooks/useSlotLogic";
+import { useSound } from "../hooks/useSound";
 import styles from "./LoseModal.module.scss";
 import Image from "next/image";
 import youLose from "../image/modal/you-lose.svg";
@@ -11,6 +13,15 @@ import { Button } from "./shared/Button";
 
 export const LoseModal = () => {
   const { gameResult, handleResetGame, currentBet } = useSlotLogic();
+  const { playSound } = useSound();
+
+  const isOpen = gameResult === "lose";
+
+  useEffect(() => {
+    if (isOpen) {
+      playSound("lose");
+    }
+  }, [isOpen, playSound]);
 
   const rainEffect = (
     <div className={styles.rainEffect}>
@@ -22,7 +33,7 @@ export const LoseModal = () => {
 
   return (
     <BaseModal
-      isOpen={gameResult === "lose"}
+      isOpen={isOpen}
       onClose={handleResetGame}
       сlassName={styles.modalOverlay}
       backgroundEffect={rainEffect}
